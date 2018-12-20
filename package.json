@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "omega-build": "./.scripts/monorepo-build.sh",
+    "monorepo-build": "./scripts/monorepo-build.sh",
     "bootstrap": "lerna bootstrap --no-ci --ignore-scripts",
     "clean": "lerna clean --yes",
     "start": "./.scripts/start.sh",
@@ -45,7 +45,7 @@
     "@commitlint/read": "7.0.0",
     "chalk": "2.4.1",
     "inquirer": "6.0.0",
-    "lerna": "3.4.0"
+    "lerna": "^3.4.1"
   },
   "devDependencies": {
     "concurrently": "3.6.1",
@@ -57,14 +57,5 @@
   },
   "optionalDependencies": {
     "@newsint/conventional-changelog-titan": "./packages/nu-sun-conventional-changelog-titan"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run precommit --concurrency 1 --stream",
-      "prepare-commit-msg": "node githooks/preparecommitmsg",
-      "commit-msg": "node githooks/commitmsg",
-      "post-merge": "./githooks/deps-check.sh",
-      "post-checkout": "./githooks/deps-check.sh"
-    }
   }
 }
