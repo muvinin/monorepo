@@ -17,22 +17,19 @@
     "lint": "lerna run lint",
     "lintcss": "lerna run lintcss",
     "lint:lerna": "eslint **/*.js",
-    "patch-branch:component-library": "git apply ../nuk-ge-sun-web-component-library/monorepo.patch -p1 --directory=packages/nuk-ge-sun-web-component-library",
-    "patch-branch:helios": "git apply ../nu-sun-helios/monorepo.patch -p1 --directory=packages/nu-sun-helios",
-    "patch-branch:all": "npm run patch-branch:helios && npm run patch-branch:component-library",
     "version:install": "npm install --production",
-    "version:master": "npm run version:install && lerna version --conventional-commits --changelog-preset @newsint/titan --no-push --yes",
-    "version:pr": "npm run version:install && lerna version --conventional-commits --changelog-preset @newsint/titan --no-git-tag-version --no-push --yes"
+    "version:master": "npm run version:install && lerna version --conventional-commits --changelog-preset @muvinin/monorepo --no-push --yes",
+    "version:pr": "npm run version:install && lerna version --conventional-commits --changelog-preset @muvinin/monorepo --no-git-tag-version --no-push --yes"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/newsuk/nu-sun-titan.git"
+    "url": "git+https://github.com/muvinin/monorepo.git"
   },
   "keywords": [],
   "author": "muvin.in",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/newsuk/nu-sun-titan/issues"
+    "url": "https://github.com/muvinin/monorepo/issues"
   },
   "homepage": "https://www.muvin.in",
   "dependencies": {
@@ -54,8 +51,5 @@
     "eslint-plugin-import": "2.13.0",
     "husky": "1.1.2",
     "package-change-checker": "1.1.0"
-  },
-  "optionalDependencies": {
-    "@newsint/conventional-changelog-titan": "./packages/nu-sun-conventional-changelog-titan"
   }
 }
