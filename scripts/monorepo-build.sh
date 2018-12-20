@@ -37,6 +37,7 @@ else
   GIT_BRANCH=$TRAVIS_BRANCH;
 fi
 
+changed_packages="{general-infrastructure,}"
 
 if [ ${changed_packages} = "{,}" ] || [ ${changed_packages} = "{}" ] || [ ${changed_packages} = {} ]
 then
