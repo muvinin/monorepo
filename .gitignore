@@ -1,0 +1,15 @@
+# Directories
+# ===========
+.*code
+.idea
+*.todo
+.terraform
+node_modules
+*.history
+
+# Files
+# =====
+package-lock.json
+*.log
+*.tgz
+*.DS_Store

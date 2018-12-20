@@ -1,0 +1,70 @@
+{
+  "name": "@muvinin/monorepo",
+  "version": "1.0.0",
+  "description": "The muvin.in monorepo",
+  "main": "./",
+  "engines": {
+    "node": ">=10.*"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "omega-build": "./.scripts/monorepo-build.sh",
+    "bootstrap": "lerna bootstrap --no-ci --ignore-scripts",
+    "clean": "lerna clean --yes",
+    "start": "./.scripts/start.sh",
+    "pretest": "npm run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "lintcss": "lerna run lintcss",
+    "lint:lerna": "eslint **/*.js",
+    "patch-branch:component-library": "git apply ../nuk-ge-sun-web-component-library/monorepo.patch -p1 --directory=packages/nuk-ge-sun-web-component-library",
+    "patch-branch:helios": "git apply ../nu-sun-helios/monorepo.patch -p1 --directory=packages/nu-sun-helios",
+    "patch-branch:all": "npm run patch-branch:helios && npm run patch-branch:component-library",
+    "version:install": "npm install --production",
+    "version:master": "npm run version:install && lerna version --conventional-commits --changelog-preset @newsint/titan --no-push --yes",
+    "version:pr": "npm run version:install && lerna version --conventional-commits --changelog-preset @newsint/titan --no-git-tag-version --no-push --yes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newsuk/nu-sun-titan.git"
+  },
+  "keywords": [],
+  "author": "muvin.in",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/newsuk/nu-sun-titan/issues"
+  },
+  "homepage": "https://www.muvin.in",
+  "dependencies": {
+    "@babel/helpers": "7.1.0",
+    "@commitlint/config-conventional": "7.0.1",
+    "@commitlint/format": "7.0.0",
+    "@commitlint/lint": "7.0.0",
+    "@commitlint/load": "7.0.0",
+    "@commitlint/parse": "7.0.0",
+    "@commitlint/read": "7.0.0",
+    "chalk": "2.4.1",
+    "inquirer": "6.0.0",
+    "lerna": "3.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "3.6.1",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "13.0.0",
+    "eslint-plugin-import": "2.13.0",
+    "husky": "1.1.2",
+    "package-change-checker": "1.1.0"
+  },
+  "optionalDependencies": {
+    "@newsint/conventional-changelog-titan": "./packages/nu-sun-conventional-changelog-titan"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run precommit --concurrency 1 --stream",
+      "prepare-commit-msg": "node githooks/preparecommitmsg",
+      "commit-msg": "node githooks/commitmsg",
+      "post-merge": "./githooks/deps-check.sh",
+      "post-checkout": "./githooks/deps-check.sh"
+    }
+  }
+}
