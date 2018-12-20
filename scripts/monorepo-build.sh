@@ -58,6 +58,7 @@ then
   docker run --rm \
     -v "${HOME}/.npm:/root/.npm" \
     -v "$(pwd):/code" \
+    -e PATH="/code/node_modules/.bin:$PATH" \
     -w /code \
     ${NODE_BUILD_ENV_VERSION} \
     npm run version:master
@@ -67,6 +68,7 @@ else
   docker run --rm \
     -v "${HOME}/.npm:/root/.npm" \
     -v "$(pwd):/code" \
+    -e PATH="/code/node_modules/.bin:$PATH" \
     -w /code \
     ${NODE_BUILD_ENV_VERSION} \
     npm run version:pr
@@ -91,6 +93,7 @@ docker run --rm \
   -v "${HOME}/.docker/config.json:/root/.docker/config.json" \
   -v "${HOME}/.npm:/root/.npm" \
   -v "$(pwd):/code" \
+  -e PATH="/code/node_modules/.bin:$PATH" \
   -w "/code" \
   -e HOST_WORKSPACE=$(pwd) \
   -e GIT_BRANCH=${GIT_BRANCH} \
