@@ -39,7 +39,7 @@ fi
 
 changed_packages="{general-infrastructure,}"
 
-if [ ${changed_packages} = "{,}" ] || [ ${changed_packages} = "{}" ] || [ ${changed_packages} = {} ]
+if [ ${changed_packages} = "{,}" ] || [ ${changed_packages} = "{}" ]
 then
   echo "No packages were changed, nothing to build....if there was something to build put it in a package!!"
   exit 0
