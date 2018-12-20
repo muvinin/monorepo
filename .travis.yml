@@ -7,8 +7,13 @@ jobs:
   include:
   - stage: monorepo-build
     script:
-      - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./scripts/monorepo-build.sh; fi'
-      - 'if [ "$TRAVIS_BRANCH" = "master" ]; then bash ./scripts/monorepo-build.sh; fi'
+      - ./scripts/monorepo-build.sh
+    if: type = pull_request
+  
+  - stage: monorepo-build
+    script:
+      - ./scripts/monorepo-build.sh
+    if: branch = master
 
 env:
   global:
