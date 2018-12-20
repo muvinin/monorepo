@@ -1,11 +1,15 @@
 dist: cosmic
 language: bash
 services:
-- docker
+  - docker
+
 jobs:
   include:
   - stage: monorepo-build
-    script: "./scripts/monorepo-build.sh"
+    script:
+      - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./scripts/monorepo-build.sh; fi'
+      - 'if [ "$TRAVIS_BRANCH" = "master" ]; then bash ./scripts/monorepo-build.sh; fi'
+
 env:
   global:
   - secure: jticouo/laF4BKCMwthkiA04mdnNy8YSBNCT5qQ6NSX2Wx+pgIzevhsCiKGb3nceS7i4uQcwmg2W82FLGE6Ab/+PkozgR0iyHGxn/jGT3YMWeXzkP95Uekx/n+4idyCsza8f77Lcgqc0nh4cvo0uIAt0BYeZJLCDDdAuBJ5n9PGeI3VET8uj8M4alC+KTxolMOvdy3wibxL8Rx+vTj0uKxt3VXATKvqIwbOZi1bBjaVTxMjVgIxNH9M4+98NqntkLWfN5hRHtwQoIcEb57bHIt+mZ3rKNc8fLtLBgyTY8+ojrRt9/xViD4OipxKUOZuat35fL06PtJOXpFpyKrndNrjlUbdnnJf+XAr5U7umcQKhJWE1l/slRH61rqeQ8u4Dpew3XnIyiGqYceoA+g/roLxf/sTMf3e/l6pQLes6LQ7tCfj/mel58ZKi7Vni74gwD5C6tb43hu+lUSL4HbL8qouoVtWvV8KrmEHGpPvZq0LU6LwdkseHxWknkt6m+p94MQQVc13EvsbBOMDRW3tAl5ALQXeC2QHrJMb3MfwCSn4hiiUdgR/CY9fZi9i0LNKJqMIjY7ABdzaZK9gZIJ7RcAe5iSj34TjASsU+NtIlLR8dT5Vonl+oBQ1FKqJgOXF7v528g7xCFLS4PNYXnbK0UbzLqYDsQcSRPFsF7vxdwMI=
